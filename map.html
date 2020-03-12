@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -13,9 +14,22 @@
         <script type="text/javascript">
             let container = document.getElementById('main')
             var myChart = echarts.init(container);
-            fetch('./data.json').then(res=>res.json()).then(data=>{
-                console.log(data)
-            })
+              
+            fetch('./data.json')  
+            .then(response => response.json())  
+            .then((data) => {
+                let arr = data.map(r=>{
+                    return{
+                        name:r.provinceShortName,
+                        value:r.currentconfirmedCount
+                    }
+                })
+                console.log(arr);
+            
+            })  
+               
+
+            //fetch('./data.json').then(res=>res.json()).then(data=>{console.log(data)})
             // 指定图表的配置项和数据
             var option = {
                 title:{
