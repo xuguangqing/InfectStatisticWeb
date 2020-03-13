@@ -8,7 +8,7 @@ requests('https://ncov.dxy.cn/ncovh5/view/pneumonia?from=timeline&isappinstalled
       let window = {}
        const $ = cheerio.load(chunk)
        eval($("#getAreaStat").html())
-       fs.writeFile(path.resolve(__dirname,'data1.json'),
+       fs.writeFile(path.resolve(__dirname,'data.json'),
           JSON.stringify(window.getAreaStat),
        ()=>{
         console.log("保存成功")
