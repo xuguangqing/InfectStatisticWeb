@@ -12,7 +12,58 @@
         <script type="text/javascript">
             let container = document.getElementById('main')
             var myChart = echarts.init(container);
+            // 指定图表的配置项和数据
+            var option = { 
+                title:{
+                    text:"疫情地图",
+                    textStyle:{
+                        fontSize:30
+                    },
+                    subtext:"111",
+                    left:"center",
+                    padding:5,  
+                },
+                xAxis:{
+                    data:['10','11','12','13']
+                },
+                yAxis:{
+                    splitNumber:5
+                },
+                legend:{
+                    bottom:0,
+                    //data:['确诊','疑似','治愈','死亡'],
+                }, 
+                tooltip:{
+                    formatter(data){
+                        return data.marker + data.value
+                    }
+                },
+                series:[ 
+                    {
+                        name:"确诊",
+                        type:'line',
+                        data:[300,300,300,300]
+                    },
+                    {
+                        name:"疑似",
+                        type:'line',
+                        data:[300,200,50,30]
+                    },
+                    {
+                        name:"治愈",
+                        type:'line',
+                        data:[100,120,50,30]
+                    },
+                    {
+                        name:"死亡",
+                        type:'line',
+                        data:[10,5,3,0]
+                    }
+                ]
+            };
     
+            // 使用刚指定的配置项和数据显示图表。
+            myChart.setOption(option);
             
         </script>
     </body>
