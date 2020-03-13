@@ -76,7 +76,10 @@
               
                 fetch(params.data.value[4]).then(res => res.json()).then(res1 => {
                     console.log(res1)
-                
+                var table =document.getElementById("table");
+                table.innerHTML=`<table border="2px solid red"><tr><td colspan="4">${params.data.name}</td></tr><tr><th>现有确诊</th><th>累计确诊</th><th>累计治愈</th><th>累计死亡</th></tr>
+                <tr><td>${res1.data[res1.data.length-1].currentConfirmedCount}</td><td>${res1.data[res1.data.length-1].confirmedCount}</td>
+                <td>${res1.data[res1.data.length-1].curedCount}t</td><td>${res1.data[res1.data.length-1].deadCount}</td></tr></table>`
                     var option = {
                         title: {
                             text: `${params.data.name}近2周疫情趋势图`,
