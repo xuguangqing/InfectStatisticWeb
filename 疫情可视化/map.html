@@ -48,7 +48,26 @@
                     padding:15,
                 },
                 
-                
+                tooltip:{
+                    formatter({data}){
+                        return `
+                        中国 ${data.name}<br>
+                        当前确诊：${data.value[0]}<br>
+                        累计确诊：${data.value[1]}<br>
+                        当前疑似：${data.value[2]}<br>
+                        累计治愈：${data.value[3]}<br>
+                        累计死亡：${data.value[4]}<br>
+                        `
+                    }
+                },
+                series:[
+                    {
+                        name:"疫情地图",
+                        type:'map',
+                        map:"china",
+                        data 
+                    }
+                ]
             };
     
             // 使用刚指定的配置项和数据显示图表。
