@@ -71,7 +71,8 @@
             myChart.setOption(option);
             myChart.on('click',function(params){
                 //console.log(params.data.value[4]);
-                
+                let container1 = document.getElementById('detail')
+                var myChart = echarts.init(container1);
               
                 fetch(params.data.value[4]).then(res => res.json()).then(res1 => {
                     console.log(res1)
@@ -79,7 +80,86 @@
                 table.innerHTML=`<table border="2px solid red"><tr><td colspan="4">${params.data.name}</td></tr><tr><th>现有确诊</th><th>累计确诊</th><th>累计治愈</th><th>累计死亡</th></tr>
                 <tr><td>${res1.data[res1.data.length-1].currentConfirmedCount}</td><td>${res1.data[res1.data.length-1].confirmedCount}</td>
                 <td>${res1.data[res1.data.length-1].curedCount}t</td><td>${res1.data[res1.data.length-1].deadCount}</td></tr></table>`
-                    
+                    var option = {
+                        title: {
+                            text: `${params.data.name}疫情趋势图`,
+                            subtext:"单位：例",
+                            textStyle: {
+                                fontSize: 30
+                            },
+                            left: "center",
+                            padding: 5,
+                        },
+                        xAxis: {
+                            data: [res1.data[res1.data.length-14].dateId,res1.data[res1.data.length-13].dateId, 
+                                   res1.data[res1.data.length-12].dateId,res1.data[res1.data.length-11].dateId,
+                                   res1.data[res1.data.length-10].dateId,res1.data[res1.data.length-9].dateId,
+                                   res1.data[res1.data.length-8].dateId,res1.data[res1.data.length-7].dateId,
+                                   res1.data[res1.data.length-6].dateId,res1.data[res1.data.length-5].dateId,
+                                   res1.data[res1.data.length-4].dateId,res1.data[res1.data.length-3].dateId,
+                                   res1.data[res1.data.length-2].dateId,res1.data[res1.data.length-1].dateId,
+                                   ]
+                        },
+                        yAxis: {
+                            splitNumber: 5
+                        },
+                        legend: {
+                            bottom: 0,
+                            //data:['确诊','疑似','治愈','死亡'],
+                        },
+                        
+                        series: [
+                            {
+
+                                name: "累计确诊",
+                                type: 'line',
+                                data: [res1.data[res1.data.length-14].confirmedCount, res1.data[res1.data.length-13].confirmedCount, 
+                                       res1.data[res1.data.length-12].confirmedCount, res1.data[res1.data.length-11].confirmedCount,
+                                       res1.data[res1.data.length-10].confirmedCount, res1.data[res1.data.length-9].confirmedCount,
+                                       res1.data[res1.data.length-8].confirmedCount, res1.data[res1.data.length-7].confirmedCount,
+                                       res1.data[res1.data.length-6].confirmedCount, res1.data[res1.data.length-5].confirmedCount,
+                                       res1.data[res1.data.length-4].confirmedCount, res1.data[res1.data.length-3].confirmedCount,
+                                       res1.data[res1.data.length-2].confirmedCount, res1.data[res1.data.length-1].confirmedCount,]
+                            },
+                            {
+                                name: "新增确诊",
+                                type: 'line',
+                                data: [res1.data[res1.data.length-14].confirmedIncr, res1.data[res1.data.length-13].confirmedIncr, 
+                                       res1.data[res1.data.length-12].confirmedIncr, res1.data[res1.data.length-11].confirmedIncr,
+                                       res1.data[res1.data.length-10].confirmedIncr, res1.data[res1.data.length-9].confirmedIncr,
+                                       res1.data[res1.data.length-8].confirmedIncr, res1.data[res1.data.length-7].confirmedIncr,
+                                       res1.data[res1.data.length-6].confirmedIncr, res1.data[res1.data.length-5].confirmedIncr,
+                                       res1.data[res1.data.length-4].confirmedIncr, res1.data[res1.data.length-3].confirmedIncr,
+                                       res1.data[res1.data.length-2].confirmedIncr, res1.data[res1.data.length-1].confirmedIncr,]
+                            },
+                            {
+                                name: "累计治愈",
+                                type: 'line',
+                                data: [res1.data[res1.data.length-14].curedCount, res1.data[res1.data.length-13].curedCount, 
+                                       res1.data[res1.data.length-12].curedCount, res1.data[res1.data.length-11].curedCount,
+                                       res1.data[res1.data.length-10].curedCount, res1.data[res1.data.length-9].curedCount,
+                                       res1.data[res1.data.length-8].curedCount, res1.data[res1.data.length-7].curedCount,
+                                       res1.data[res1.data.length-6].curedCount, res1.data[res1.data.length-5].curedCount,
+                                       res1.data[res1.data.length-4].curedCount, res1.data[res1.data.length-3].curedCount,
+                                       res1.data[res1.data.length-2].curedCount, res1.data[res1.data.length-1].curedCount,]
+                            },
+                            {
+                                name: "累计死亡",
+                                type: 'line',
+                                data: [res1.data[res1.data.length-14].deadCount, res1.data[res1.data.length-13].deadCount, 
+                                       res1.data[res1.data.length-12].deadCount, res1.data[res1.data.length-11].deadCount,
+                                       res1.data[res1.data.length-10].deadCount, res1.data[res1.data.length-9].deadCount,
+                                       res1.data[res1.data.length-8].deadCount, res1.data[res1.data.length-7].deadCount,
+                                       res1.data[res1.data.length-6].deadCount, res1.data[res1.data.length-5].deadCount,
+                                       res1.data[res1.data.length-4].deadCount, res1.data[res1.data.length-3].deadCount,
+                                       res1.data[res1.data.length-2].deadCount, res1.data[res1.data.length-1].deadCount,]
+                            }
+                        ]
+                    };
+
+                    // 使用刚指定的配置项和数据显示图表。
+                    myChart.setOption(option);
+
 
 
                 })
