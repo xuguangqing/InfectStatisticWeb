@@ -15,7 +15,46 @@
             let container = document.getElementById('main')
             var myChart = echarts.init(container);
               
-            
+            fetch('./data.json')  
+            .then(res => res.json())  
+            .then((res) => {
+                let data = res.map(r =>{
+                    return{
+                        name:r.provinceShortName,
+                        value:[r.currentConfirmedCount,r.confirmedCount,r.suspectedCount,
+                        r.curedCount,r.deadCount]
+                    }
+                })             
+
+            var option = {
+                visualMap:{
+                    dimension: 0,
+                    pieces: [
+                        { gte: 10000 },            
+                        { gte: 1000, lte: 9999 }, 
+                        { gte: 100, lte: 999 },  
+                        { gte: 10, lte: 99 },   
+                        { gte: 1, lte: 9},
+                        { gte: 0, lte: 0}
+                    ]
+                },
+                title:{
+                    text:"疫情地图",
+                    textStyle:{
+                        fontSize:30
+                    },
+                    subtext:"111",
+                    left:"center",
+                    padding:15,
+                },
+                
+                
+            };
+    
+            // 使用刚指定的配置项和数据显示图表。
+            myChart.setOption(option);
+
+        }) 
         </script>
     </body>
 </html>
