@@ -1,6 +1,6 @@
 # InfectStatisticWeb
 某次疫情统计可视化的实现
-##本项目使用VS code构建
+## 本项目使用VS code构建
 > - 构建步骤：
     - 1、实现安装好nodejs，npm和comp
 
